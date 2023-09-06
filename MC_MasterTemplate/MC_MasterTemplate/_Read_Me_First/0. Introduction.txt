@@ -1,0 +1,20 @@
+
+--------
+BRIEF OVERVIEW
+--------
+
+Thanks for downloading this template. Contained herein is a complete, functional custom civilization. If you wish, before making any changes, you can build this project (by clicking Build --> Build Solution), launching Civilization VI and playing as the custom leader this mod creates. You are welcome to familiarise yourself with the abilities of the civilization and leader, the unique unit and so on, if you feel that will help give you context around the code contained in this template.
+
+Secondly, welcome to the world of Civilization VI modding, if you are indeed new to the craft. I hope you enjoy the learning process and I hope the annotations in this template help explain some of the concepts. I have tried to lay things out as logically as possible. I apologise in advance if my explanation style, or approach, does not help you. I am always open to feedback via CivFanatics (where you downloaded this from).
+
+I would strongly recommend reading the 8 help files situated beneath this one in the _Read_Me_First folder, which you can find in the left-hand-pane known as the Solution Explorer. These files provide a general overview of the code files, some core modding principles to understand and, in some cases, provide step-by-step instructions on how to complete specific tasks required to complete your own mod.
+
+Once you are ready to begin, go ahead and open up the "1. HelpFile_CoreCode.txt" file and work through the comments.
+
+Use this template however you wish. Feel free to butcher it to your heart's content. It is here to guide you, whatever that might look like.
+
+I am always keen to hear about the custom civilizations created by using this template - so please feel free to get in touch via CivFanatics just to share your own content, if you wish to.
+
+Best of luck!
+
+Matt (MC)

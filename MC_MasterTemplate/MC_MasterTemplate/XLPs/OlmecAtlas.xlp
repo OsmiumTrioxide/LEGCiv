@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AssetObjects..XLP>
+	<m_Version>
+		<major>1</major>
+		<minor>0</minor>
+		<build>0</build>
+		<revision>0</revision>
+	</m_Version>
+	<m_ClassName text="UITexture"/>
+	<m_PackageName text="UI/Icons"/>
+	<m_Entries>
+		<Element>
+			<m_EntryID text="LEADER_PO_NGBE_DIPLO_BG"/>
+			<m_ObjectName text="LEADER_PO_NGBE_DIPLO_BG"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas200"/>
+			<m_ObjectName text="OlmecAtlas200"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas22"/>
+			<m_ObjectName text="OlmecAtlas22"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas256"/>
+			<m_ObjectName text="OlmecAtlas256"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas30"/>
+			<m_ObjectName text="OlmecAtlas30"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas36"/>
+			<m_ObjectName text="OlmecAtlas36"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas44"/>
+			<m_ObjectName text="OlmecAtlas44"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas48"/>
+			<m_ObjectName text="OlmecAtlas48"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas50"/>
+			<m_ObjectName text="OlmecAtlas50"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas64"/>
+			<m_ObjectName text="OlmecAtlas64"/>
+		</Element>
+		<Element>
+			<m_EntryID text="OlmecAtlas80"/>
+			<m_ObjectName text="OlmecAtlas80"/>
+		</Element>
+		<Element>
+			<m_EntryID text="PoNgbeIcon32"/>
+			<m_ObjectName text="PoNgbeIcon32"/>
+		</Element>
+		<Element>
+			<m_EntryID text="PoNgbeIcon45"/>
+			<m_ObjectName text="PoNgbeIcon45"/>
+		</Element>
+		<Element>
+			<m_EntryID text="PoNgbeIcon48"/>
+			<m_ObjectName text="PoNgbeIcon48"/>
+		</Element>
+		<Element>
+			<m_EntryID text="PoNgbeIcon50"/>
+			<m_ObjectName text="PoNgbeIcon50"/>
+		</Element>
+		<Element>
+			<m_EntryID text="PoNgbeIcon55"/>
+			<m_ObjectName text="PoNgbeIcon55"/>
+		</Element>
+		<Element>
+			<m_EntryID text="PoNgbeIcon64"/>
+			<m_ObjectName text="PoNgbeIcon64"/>
+		</Element>
+		<Element>
+			<m_EntryID text="PoNgbeIcon80"/>
+			<m_ObjectName text="PoNgbeIcon80"/>
+		</Element>
+		<Element>
+			<m_EntryID text="PoNgbeIcon256"/>
+			<m_ObjectName text="PoNgbeIcon256"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas200"/>
+			<m_ObjectName text="WerejaguarAtlas200"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas22"/>
+			<m_ObjectName text="WerejaguarAtlas22"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas256"/>
+			<m_ObjectName text="WerejaguarAtlas256"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas32"/>
+			<m_ObjectName text="WerejaguarAtlas32"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas38"/>
+			<m_ObjectName text="WerejaguarAtlas38"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas50"/>
+			<m_ObjectName text="WerejaguarAtlas50"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas70"/>
+			<m_ObjectName text="WerejaguarAtlas70"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas80"/>
+			<m_ObjectName text="WerejaguarAtlas80"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarAtlas95"/>
+			<m_ObjectName text="WerejaguarAtlas95"/>
+		</Element>
+		<Element>
+			<m_EntryID text="WerejaguarHistoricMoment"/>
+			<m_ObjectName text="WerejaguarHistoricMoment"/>
+		</Element>
+		<Element>
+			<m_EntryID text="ColossalHeadHistoricMoment"/>
+			<m_ObjectName text="ColossalHeadHistoricMoment"/>
+		</Element>
+		<Element>
+			<m_EntryID text="LEADER_MC_PO_NGBE_NEUTRAL"/>
+			<m_ObjectName text="LEADER_MC_PO_NGBE_NEUTRAL"/>
+		</Element>
+		<Element>
+			<m_EntryID text="LEADER_MC_PO_NGBE_BACKGROUND"/>
+			<m_ObjectName text="LEADER_MC_PO_NGBE_BACKGROUND"/>
+		</Element>
+	</m_Entries>
+	<m_AllowedPlatforms>
+		<Element>WINDOWS</Element>
+		<Element>LINUX</Element>
+		<Element>MACOS</Element>
+		<Element>IOS</Element>
+	</m_AllowedPlatforms>
+</AssetObjects..XLP>
+

@@ -1,0 +1,92 @@
+
+--------
+HELP FILE: LEADER CODE (.SQL FILES)
+--------
+
+--------
+INTRODUCTION
+--------
+
+This file intends to serve as a simple readme/help file, to try and provide some overview and context on what is contained within the various SQL files within the 'Leader' folder, explaining their purpose.
+
+The files in the 'Leader' folder follow the same principles as those in the 'Core' folder, which is the suggested starting place. If you have not yet read through "1. HelpFile_CoreCode.txt" and you are struggling, I would recommend starting there. I will not repeat the context/general principles of the code used in this file.
+
+--------
+VIEWING & EDITING
+--------
+
+A really brief - but important - note about how to actually use SQL files, in the context of this ModBuddy software. SQL files can be viewed and edited by opening them directly in ModBuddy. Browsing to a SQL file via the Solution Explorer (the folder structure on the left-hand-side) and double-clicking a SQL file will open its contents as a tab in this window. With the file open, you can edit it as required, with no restrictions. When you save the contents, it will save the new version in-place - much like if you were editing a Microsoft Word document on your computer.
+
+--------
+SUMMARY OF 'LEADER' CODE FILES
+--------
+
+The below is intended to provide a brief overview of the specific files that appear under the 'Leader' folder, what they contain and how they contribute to our custom civilization mod. Please note: the order in which the files are listed below is a suggested order in which they should be worked through and understood. Assuming that you have already configured your Civilization ('Core'), the next major building block is to configure the 'Leader' section.
+
+--------
+
+1. Leader_Core.sql
+
+This file contains the primary configuration for our new, custom leader. We also link this leader to our custom civilization - so that our leader 'leads' our civilization.
+
+There is only limited code in this file as, essentially, a leader is just a 'container' in its most basic form that someone playing Civilization VI can select to play as. The other files contain the code that applies the additional personality and capability to the leader - which also gets a lot of its identity from the artwork implementation (also covered later).
+
+The primary game files that have equivalent code are: \Base\Assets\Gameplay\Data\Leaders.xml and \DLC\Expansion2\Data\Expansion2_NamedPlaces.xml.
+
+--------
+
+2. Leader_Colors.sql
+
+This file associates the four pairs of colour values we defined in Civilization_Colors.sql to our custom leader. These will influence the colour of the civilization icon, as well as the border colours of our territory.
+
+The primary game file that has equivalent code is: \Base\Assets\UI\Colors\PlayerColors.xml.
+
+--------
+
+3. Leader_UA.sql
+
+This file adds our custom leader's unique ability and includes all of the necessary code to define it and then configure the effect it has on the game. This leader's unique ability is fairly simple - we'll grant improved movement on hills terrain to specific civilian units.
+
+The primary game files that have equivalent code are: \Base\Assets\Gameplay\Data\Leaders.xml and \Base\Assets\Gameplay\Data\UnitAbilities.xml.
+
+--------
+
+4. Leader_Agenda.sql
+
+This file is the primary repository of code that dictates how our custom leader will behave, in terms of diplomacy, when controlled by the AI. The concepts we make use of are mostly things we have seen in previous files - Traits, Modifiers and Requirements - however, we hook these up to Agendas, which are the game's mechanism for granting behavioural 'personality' to a given leader.
+
+The primary game files that have equivalent code are: \Base\Assets\Gameplay\Data\Leaders.xml and \Base\Assets\Gameplay\Data\Agendas.xml.
+
+--------
+
+5. Leader_Screens.sql
+
+This file contains two sections of code, both of which configure the 2D textures to be displayed on certain screens - namely, the Loading (and Leader Select) screens, as well as the Diplomacy Screen.
+
+Firaxis' base-game implementation does not configure this code explicitly - they populate the entries programatically, following strict file-naming conventions. However, our approach with the few lines of code in this achieves the same (successful result).
+
+--------
+
+6. Leader_Config.sql
+
+This file is a little different in purpose, but it is a critical, final step in making our custom leader playable. The code contained in this file adds our custom leader to the game's recognised list of playable leaders, for each ruleset (Vanilla, R&F and/or GS) that we configure.
+
+Without this file correctly included, it will be impossible for our custom leader to be selected and therefore our custom civilization cannot be used, either.
+
+The primary game file that has equivalent code is: \Base\Assets\Configuration\Data\Players.xml.
+
+--------
+
+7. Leader_Localisation.sql
+
+With all of the gameplay code completed, we now turn our attention to the corresponding in-game display text. This file is fairly straightforward, although it may look a little different from the other (gameplay code) files.
+
+It contains a list of every item we've generated that has a corresponding in-game text requirement. This file is where we ensure the text displayed in-game has the flavour and style we want. Most entries are self-explanatory and the annotations that split things up into sections should help, especially with the (lengthy) list of diplomacy entries.
+
+Unlike the Civilization_Localisation.sql, we cannot easily look-up every LOC_ string in this file, within our mod. Many of the diplomacy-related entries make use of procedurally-generated LOC_ strings that match the format of the base game's implementation.
+
+--------
+
+At this stage, we have completed all of the SQL files that make up the gameplay code and in-game text within the 'Leader' section. If you're going in order, you have now completed all of the gameplay code (SQL) files in this mod, except for NewIcons.sql - which we'll revisit as part of our 2D artwork walkthrough, next.
+
+Suggested next section: 3. HelpFile_Textures.txt. With our gameplay code in SQL format complete (for the most part), we'll now introduce some visual elements - specifically, the creation of game-ready 2D artwork.

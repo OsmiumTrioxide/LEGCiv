@@ -1,0 +1,105 @@
+
+--------
+HELP FILE: BUILD ACTIONS (PROJECT PROPERTIES)
+--------
+
+--------
+INTRODUCTION
+--------
+
+Once again, congratulations on making it this far. The initial hard work is now behind us - we just need to finalise a few variables before we are ready to build our mod and test it.
+
+Almost everything we will do in these steps will be done via the Project Properties, which can be accessed via Project --> ProjectName Properties (from the ModBuddy menu, above).
+
+--------
+PROJECT PROPERTIES: MOD INFO
+--------
+
+The information on the Mod Info screen is fairly self-explanatory, for the most part.
+
+The most critical thing to do is change the Mod ID. To the right of the existing ID (which, for reference, is 8c6472be-9b71-4608-b804-b4918e1eaddc), click New and say 'Yes' to the warning. The alphanumeric string will change. Whilst we are here, change the Mod Name.
+
+Next, copy the new Mod ID value (Ctrl + C) and open your ModArt XML file. On lines 4-5, you should see the following:
+
+<name text="MC_MasterTemplate"/>
+<id text="8c6472be-9b71-4608-b804-b4918e1eaddc"/>
+
+Replace the Mod Name text and Mod ID string with the values you set in the Mod Info pane and save the ModArt XML file. We won't need it again, so you can close it.
+
+Back in your Project Properties Mod Info pane, populate the Mod Name, Author and other text fields as you see fit. A decent description is appreciated by those who will download your mod, so please take the time to create one. Leave all of the tickboxes as they are - although you're welcome to experiment with toggling these to understand the results if you wish.
+
+--------
+PROJECT PROPERTIES: CUSTOM PROPERTIES & ASSOCIATIONS
+--------
+
+Unless you have significantly altered the template to either remove dependencies on the expansions, or to introduce other mod dependencies, you can leave these as they are.
+
+--------
+PROJECT PROPERTIES: FRONTEND ACTIONS
+--------
+
+FrontEnd Actions is where we specify the individual files, from within our ModBuddy project, that the game should read and execute the code/contents of as part of the Civilization VI game launch. Whilst the files being processed are all of the SQL file type, they can be processed in different contexts by the game engine (or, more simply, during different phases of launch).
+
+In simple terms, the only files that need to be processed as FrontEnd Actions are those that are used to apply changes, or add entries, to the main menu and game setup / leader select screen.
+
+If you have maintained the file structure suggested by this template, you do not need to make any changes here. For reference, in our custom civilization, the FrontEnd Actions specified are as follows:
+
+UpdateDatabase: Leader_Config.sql. This file contains the code that populates the custom leader into the Leader Selection screen - hence we need to load it as part of the 'FrontEnd Actions'. Loading it as part of the 'In-Game Actions' would be too late (we pick our leader before the In-Game Actions execute). Files that alter databases must only contain code that is valid for either FrontEnd or In-Game. As a result, the contents of Leader_Config.sql cannot be merged with a file that has game code intended for 'InGame Actions' phase.
+
+UpdateText: Civilization_Localisation.sql & Leader_Localisation.sql. There are display text entries that are needed on the Leader Selection screen - hence we need to load these as part of our 'FrontEnd Actions'. In the case of the text used in-game, it is OK that this file contains entries that are not needed until then.
+
+UpdateColors: Civilization_Colors.sql & Leader_Colors.sql. These files configure the colours that our leader icons will appear in, which are visible on the Leader Select menu (and, indeed, a player can select which to use).
+
+UpdateArt: The file referenced here is: (Mod Art Dependency File). It is referencing our ModArt XML file and is required if we have artwork, packaged via XLPs, that is needed at the Leader Select menu. In our case, there are various icons, as well as leader image itself, configured which we need to appear there - hence, this is required.
+
+UpdateIcons: NewIcons.sql. Our civilization icon, leader portrait icon as well as the icons of our unique items are referenced to display on the Leader Select screen. As such, we need the icon definitions to be processed as part of the Civilization VI game launch, so that data can be accessed by the time we arrive at the Leader Select menu.
+
+--------
+PROJECT PROPERTIES: IN-GAME ACTIONS
+--------
+
+In-Game Actions is where we specify the individual files, from within our ModBuddy project, that the game should read and execute the code of as part of the 'Start' or 'Load' game process.
+
+In simple terms, files that need to be processed as In-Game Actions are those that are used to apply changes, or add entries, that have a gameplay effect of any kind. Everything that is not specifically populating the Game Setup screen and/or Leader Select screen should appear within In-Game Actions.
+
+If you have maintained the file structure suggested by this template, you do not need to make any changes here. For reference, in our custom civilization, the In-Game Actions specified are as follows:
+
+UpdateDatabase: Civilization_Config.sql, Civilization_UA.sql, Civilization_UI.sql, Civilzation_UU.sql, Civilization_HistoricMoments.sql, Leader_Agenda.sql, Leader_Core.sql, Leader_Screens.sql and Leader_UA.sql. Essentially, every file that contains gameplay code - whether that is configuring something related to the civilization or leader.
+
+UpdateText: Civilization_Localisation.sql & Leader_Localisation.sql. Aside from the display text entries that are used on the Leader Selection screen, these files contain the display text entries for all of the other gameplay elements. Therefore, we execute them as an In-Game Action, also.
+
+UpdateColors: Civilization_Colors.sql & Leader_Colors.sql. These files configure the colours that our leader icons will appear in, which are used in numerous places throughout hte game (including, for example, the territory borders of our civilization).
+
+UpdateArt: The file referenced here is: (Mod Art Dependency File). It is referencing our ModArt XML file and is required if we either have artwork, packaged via XLPs, or we are using ArtDef files within our mod, that are used to control visual or audio elements within the game. As a general rule, the UpdateArt action should always exist as an In-Game Action, populated with the (Mod Art Dependency File) entry.
+
+UpdateIcons: NewIcons.sql. Throughout the in-game user interface, the icons we define in this file are used in numerous locations. As such, we need to ensure this file is executed as an In-Game Action.
+
+--------
+MOD COMPLETED: HOW TO BUILD
+--------
+
+If you have completed all the steps detailed in the help files numbered 1-7 (including this one), you should - in theory - be ready to build your mod.
+
+Building the mod allows the ModBuddy toolset to process the files contained in this ModBuddy project and output them, with some modifications, so that the whole project is 'game-ready'.
+
+As such, do not worry that when the mod is built, the folder and file structure is not a perfect match for what you are used to seeing in ModBuddy. This is expected. ModBuddy translates certain parts of the configuration (e.g. our Project Properties) and creates specific files, with certain structures, that hold this data.
+
+Without further ado, let's go ahead and build the mod.
+
+To do this, simply select Build --> Build Solution from ModBuddy's menu. As you do that, look at the Output pane (below) and you should have a message that reads:
+
+------ Build started: Project MC_MasterTemplate, Configuration: Default Civ6 ------
+
+This should quickly be followed by a confirmation:
+
+========== Build: 1 succeeded or up-to-date, 0 failed, 0 skipped ==========
+
+If you see this confirmation, your mod is now built. Browse to your \Documents\My Games\Sid Meier's Civilization VI\Mods\ folder and you should see your mod's folder. Open it and wonder at what you have accomplished.
+
+The next stage is to launch Civilization VI, go to 'Additional Content', ensure it is enabled and then try to start a game as your custom leader! If you get as far the Leader Select screen and you are able to pick your custom leader, that is a great start.
+
+Assuming you can get that far, try and launch a game and allow it to load. Hopefully, you should see the Loading Screen appear and you should be able to get as far as launching into the game.
+
+If you can, that is fantastic news. However, even if you can, I would recommend readsing through the next help file, as it also provides some best-practices around validating your mod's functionality. If you encountered an error/crash during the game load, or if you could not see your custom leader on the Leader Select screen, definitely check that file out for some initial tips.
+
+Suggested next section: 8. HelpFile_BasicTroubleshooting.txt.

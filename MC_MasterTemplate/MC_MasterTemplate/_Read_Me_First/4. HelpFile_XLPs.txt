@@ -1,0 +1,42 @@
+
+--------
+HELP FILE: XLPs (.XLP FILES)
+--------
+
+--------
+INTRODUCTION
+--------
+
+With all of our 2D artwork imported, we will now create some XLP files that will convert our .DDS and .TEX file pairs during the final build process and 'package' them into the final file format that the game will read (.BLP files). There's no need to worry about what these file formats mean, nor to have any concern around them not being 'common' file formats. These are proprietary formats that the game-engine expects and, thankfully, the Asset Editor tool makes the generation of .XLP files simple.
+
+We will end up with one XLP file for each 'Class Name' we created during our artwork-import process. In the case of this custom civilization, we have two: one that will package our UserInterface textures and one that will package our Leader_Fallback texture.
+
+Before we begin, go ahead and rename the OlmecAtlas.xlp file via ModBuddy's Solution Explorer. Simply right-click and choose Rename and give it a name you prefer.
+
+If you haven't yet opened it, launch the Asset Editor via the Tools menu, above.
+
+--------
+XLP FILE CREATION
+--------
+
+1. Within the Asset Editor, choose File --> Open XLP. Select the OlmecAtlas.xlp file and choose Open.
+
+2. With the file open, you'll see that all of the original images (from the original template) are listed in the Entries pane. Select all of them and click the Remove (icon: red circle with white 'X'). This should clear the Entries pane entirely.
+
+3. Next, click Add Existing (left-most icon within the Entries pane; icon: opaque folder with green '+') and a dialogue window named Asset Browser should appear.
+
+4. Within this dialogue window, on the left-hand side, untick the 'Shared' and'Civ6' boxes - leaving only your project ticked (if unchanged, it will be labelled MC_MasterTemplate).
+
+5. You should see a list of all of your imported source artwork that has the UserInterface class in the middle pane. Select everything and click OK.
+
+6. Click File --> Save.
+
+Repeat steps 2-6, having this time opened the LeaderFallbacks.xlp. For this second file, you'll only be deleting a single image and replacing it with a single image.
+
+As a final housekeeping step, back in ModBuddy's Solution Explorer, select both XLP files and, via the Properties Window (shortcut: F4), ensure their 'Build Action' is set to XLP.
+
+--------
+
+With the above steps completed, you have now successfully prepared the files that will ensure your 2D artwork is correctly packaged when we build the mod.
+
+Suggested next section: 5. HelpFile_ArtDefs.txt. For the next section, we'll be working within the Asset Editor again, so if you do not have it open, launch it now and then move to the next help file.

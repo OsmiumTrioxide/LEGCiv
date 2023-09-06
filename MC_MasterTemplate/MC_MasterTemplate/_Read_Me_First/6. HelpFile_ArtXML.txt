@@ -1,0 +1,57 @@
+
+--------
+HELP FILE: ArtDefs (.ARTDEF FILES)
+--------
+
+--------
+INTRODUCTION
+--------
+
+Next, we will prepare the Art XML file. You will likely have noticed this residing at the foot of your Solution Explorer structure.
+
+If you open this file by double-clicking it, you'll note that it is lengthy, complicated and appears to contain a lot of references to Art Consumers, Packages, Dependencies, Elements and a whole host of other things.
+
+Thankfully, despite being - perhaps - the most complicated file of all, it is the easiest to update, thanks to a community-created tool known as the ModArt Generator. For me, this step is a no-brainer: use the tool, rather than trying to correct/alter things manually.
+
+Link: https://forums.civfanatics.com/resources/thecrazyscots-mod-art-generator.27740/
+Author: thecrazyscot
+
+--------
+USAGE INSTRUCTIONS
+--------
+
+Once downloaded, ensure all contents of your project are saved and close ModBuddy.
+
+Run the .EXE in the download and, when prompted, paste in the path to the ModBuddy project. The ModBuddy project path is one folder further down than the .civ6sln file. You're looking for the folder that has the .civ6project file in it.
+
+The default location would be: C:\Users\username\Documents\Firaxis ModBuddy\Civilization VI\MC_MasterTemplate\MC_MasterTemplate (where username = your Windows username).
+
+With the path pasted, hit enter and you should be presented with a 'Completed successfully' message moments later. At this stage, close the ModArt Generator and re-open ModBuddy.
+
+Next, open the ModArt file (MC_MasterTemplate.Art.xml). Browse to the very bottom and look for the following code:
+
+<Element>
+	<name text="Shared"/>
+	<id text="725760e3-7fc0-4be7-abf1-17bc756d5436"/>
+</Element>
+
+Replace that code with the following code:
+
+<Element>
+	<name text="Expansion1"/>
+	<id text="7446c8fe-29eb-44f8-801f-098f681cc5c5"/>
+</Element>
+<Element>
+	<name text="Expansion2"/>
+	<id text="b1b63999-6b16-4dd2-a5b6-eb19794aa8ca"/>
+</Element>
+
+Please note: this is not strictly needed, I just like to do it as a matter of course as it opens up the possibility to use assets from the expansion-packs if you want to.
+
+With that changed, save the ModArt file and close it.
+
+--------
+
+We have now configured every file within our ModBuddy Solution Explorer we need to, in order to have a fully-functioning mod (once built). Congratulations on making it this far! It is no small feat - especially given the number of words I use to explain things. Give yourself a pat on the back and then move on to the final pre-build step: configuring Build Actions and setting the Project Properties.
+
+Suggested next section: 7. HelpFile_BuildActions.txt. The final configuration within the staging environment of ModBuddy before we build our mod and test it!

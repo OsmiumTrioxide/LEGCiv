@@ -1,0 +1,101 @@
+
+--------
+HELP FILE: ArtDefs (.ARTDEF FILES)
+--------
+
+--------
+INTRODUCTION
+--------
+
+Civilization VI uses a system of ArtDef files (which I presume stands for Art Definition) in order to compose various media elements for use in-game. In most cases, they control visual appearance and behaviour of any non-UserInterface texture, but they are also used to configure 3D art representation, audio and much more.
+
+Within this custom civilization, we will learn to populate a total of four different .artdef files that will further enhance the visual and audio aspect of our content.
+
+ArtDef files can be complex - especially if viewed via traditional text editors, or even via ModBuddy. Thankfully, when using the Asset Editor tool, their contents are displayed in an intuitive and - in most cases - easy-to-follow structure.
+
+If you don't have it open, launch the Asset Editor and read on below to get started.
+
+--------
+ARTDEF CONFIGURATION: FallbackLeaders.artdef
+--------
+
+We'll start with the FallbackLeaders.artdef file, as it directly relates/uses some of the work we completed in the Textures and XLPs sections. The steps below will ensure our static leader image appears on the Diplomacy Screen in-game.
+
+1. Within the Asset Editor, go to File --> Open ArtDef and choose the FallbackLeaders.artdef file.
+
+2. In the left-hand-pane, expand the 'Leaders' folder and click once to select the 'LEADER_MC_PO_NGBE' entry that has a green circle/dot next to it.
+
+3. In the right-hand-pane, you'll see a single field, labelled 'Name'. Click inside it to select the text and change it to exactly match the unique leader string for your custom leader. If you're unsure what it is, take a look at the first section of code in the Leader_Core.sql file. Whatever you set it as here is what you need to enter in the 'Name' field in the ArtDef file.
+
+4. Next, still within the ArtDef file, expand the element labelled with your leader name and you should see an 'Animations' package (with a purple package icon next to it). Select it and you should see, in the right-hand-pane, a single entry with two fields: Name and BLP Entry.
+
+5. Click within the BLP Entry field and then select the drop-down arrow and choose Browse. In the dialogue box that appears, search for the filename of your custom leader's Leader_Fallback texture (created in the Textures phase of this tutorial/walkthrough). Select it, hit OK and then, finally, choose File --> Save.
+
+We are now done with this file. You may close it, but keep Asset Editor open and move on to the next file, described below.
+
+--------
+ARTDEF CONFIGURATION: Civilizations.artdef
+--------
+
+The Civilizations.artdef file is used to configure the audio/soundtracks used by our custom civilization. Because it is outside the scope of this template to create custom music for our civilization, we'll use the audio of an existing civilization. In order to identify the reference for that audio, we'll need to look-up one of the base-game's ArtDef files.
+
+The base-game ArtDef files are located in your Civilization VI installation folder, under \Base\ArtDefs\.
+
+1. In the Asset Editor, click File --> Open ArtDef. Browse to the Civilization VI installation folder and onwards into \Base\ArtDefs\. Selection Civilizations.artdef and open that file. Decide the civilization whose music you want to use and expand the entry and select the 'Audio' sub-entry. Make a note of the 'XrefName' value that is populated.
+
+2. Next, open our project's Civilization.artdef file.
+
+3. Expand the 'CIVILIZATION_MC_OLMEC' entry, select the 'Audio' sub-entry and edit the 'XrefName' to match the value you want to use.
+
+4. Lastly, go up one level, selecting 'CIVILIZATION_MC_OLMEC' and edit the 'Name' field to exactly match the the unique civilization string for your custom civilization. If you're unsure what this is, look it up via the Civilization_Config.sql file in this project.
+
+5. With these amendments made, click File --> Save.
+
+We are now done with this file. Two down, two to go. You may close it, but keep Asset Editor open and move on to the next file, described below.
+
+--------
+ARTDEF CONFIGURATION: Cultures.artdef
+--------
+
+The Cultures.artdef file is used to control the visual, cultural appearance of our custom civilization. When you open this file, you'll note two sections: Culture and UnitCulture.
+
+'Culture' refers to the city-styles. 'UnitCulture' controls the appearance of the units.
+
+The principle is the same as for Civilizations.artdef, in terms of looking up existing entries we wish to inherit. Once we know the culture names, we need to populate them in place of the 'SouthAmerican' entries that exist in our current file.
+
+Finally, selecting each entry in turn, you'll note that the right-hand-pane has a Civilizations label and 'CIVILIZATION_MC_OLMEC' is listed. You'll need to click into this field and edit the entry to match your custom civilization's unique string.
+
+--------
+ARTDEF CONFIGURATION: Units.artdef
+--------
+
+Our final ArtDef file is certainly the most complex. The Units.artdef is used to control the 3D appearance of units on the map. Thankfully, Civilization VI provides us a whole host modular 3D assets that we can use and combine to allow for endless possibilities without the need to create 3D assets ourselves.
+
+Accessing the assets and understanding how to reference them within the Units.artdef is a little complex, however. Rather than recreate a lengthy tutorial, I am choosing to link to the guide I used when learning and creating this template:
+
+https://docs.google.com/document/d/1vKu5QW7AyBKXN_k_SNk6Dp-XDK2_m6aLiBT9PMGsQeM/
+Author: Leugi
+
+Whilst the screenshots are from an older version of the Asset Editor, all of the information is absolutely accurate and, following those steps, you should be able to create your own unit.
+
+A few simple notes from myself:
+
+Within Units.artdef, there are numerous folders - but we're only using the Units, UnitMemberTypes and UnitTintTypes.
+
+The entry under 'Units' (in the original file, it's labelled 'UNIT_MC_WEREJAGUAR') must match the string of your unique unit exactly. Take a look at Civilization_UU.sql if you need to confirm what you have set it as.
+
+If you wish to simply reuse an existing unit, wholesale, you do not need to populate anything within UnitMemberTypes. You can simply reference the base-game's UnitMemberTypes entries within Units --> UNIT_MC_WEREJAGUAR --> Members, accordingly.
+
+--------
+HOUSEKEEPING
+--------
+
+With all of these complete, you have now configured every file that will control the appearance and sound of your custom civilization and its components in some way. As a final note, the principle behind looking-up a base-game ArtDef to find a value can be applied to, essentially, understand the requirement for an ArtDef of any kind. It is absolutely worth poking around in the base-game ArtDef files to see how things work.
+
+Back in ModBuddy's Solution Explorer, select the four ArtDef files and in the Properties Window (shortcut: F4), set their 'Build Action' to 'ArtDef'.
+
+--------
+
+All that remains for us to do is to prepare one final file that collates together and catalogues all art-related files - at which point, the gameplay code, 2D artwork and Art Definitions are complete!
+
+Suggested next section: 6. HelpFile_ArtXML.txt. We no longer require the Asset Editor for any remaining work. You can close it at this stage and move on to the next help file.

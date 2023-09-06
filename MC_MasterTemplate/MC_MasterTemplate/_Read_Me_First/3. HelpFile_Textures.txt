@@ -1,0 +1,107 @@
+
+--------
+HELP FILE: TEXTURES (.DDS and .TEX FILES)
+--------
+
+--------
+INTRODUCTION
+--------
+
+With the challenge of the gameplay code behind us, we are now close to having something that 'functions' - but we also need to give it some artwork to make it visually appealing.
+
+As this template is provided as a fully-functional custom civilization in its own right, you will note that the 'Textures' folder is populated with a large number of files - each one a .DDS file with a corresponding .TEX file (with the same name). This is the end-goal of this section - the files will be arranged like this once all of the appropriate import has taken place and we have made our custom images 'game-ready'.
+
+This file walks through - briefly - how we get to that point. Please note: there is a thorough guide on the process, which includes screenshots, available via:
+
+https://steamcommunity.com/sharedfiles/filedetails/?id=2420858843
+Author: Sailor Cat
+
+Please note: the above tutorial also includes instructions to generate additional files, such as corresponding implementation code (in XML format), XLP files and ArtDef files. All of those are covered in detail in this template, so my recommendation would be to follow only the image-preparation steps in that tutorial, such that you follow the remainder in here. For those that prefer to stay in the ecosystem of this template - I have listed the implementation steps, as briefly as possible, below.
+
+--------
+PREPARATION
+--------
+
+The .DDS files that exist in the Textures folder of this template serve an additional purpose as being a reference list of all the necessary image types and sizes required to create a custom civilization. I would recommend that, as a starting point, you:
+
+1. Navigate to the Textures folder in Windows Explorer. It is most likely to be located at: \Documents\Firaxis ModBuddy\Civilization VI\MC_MasterTemplate\MC_MasterTemplate\Textures\.
+
+2. Copy all of the .DDS files and paste them into a separate location on your machine. It can be any location you wish - it just needs to be outside of the ModBuddy project structure.
+
+3. Create your equivalent artwork, matching each image for size and usage - make civilization icons in all of the same sizes, leader icons in all of the same sizes, etc. There is no requirement to save your source artwork in .DDS format - a single-layer .PNG will also work just fine.
+
+Additionally, ensure you save your source artwork into your separate location - do not save your artwork into your ModBuddy folder structure. The import process we'll step through below will take care of that for you. We'll be conducting that import process via another of the tools provided to us as part of the ModBuddy ecosystem - the Asset Editor.
+
+Finally, give your source artwork files sensible, recognisable/descriptive names and do not use spaces in filenames. Letters, numbers and underscores are all of the types of characters you need. The filenames do not strictly matter (in most cases), but following a sensible naming convention will help with organisation of both your mod and your thoughts.
+
+The only file that should maintain a specific name is the equivalent of the LEADER_MC_PO_NGBE_BACKGROUND.DDS file. This must have the name LEADER_LEADERNAME_BACKGROUND.DDS (where LEADERNAME will likely include your prefix, if you've followed the earlier recommendation).
+
+4. With all of the artwork you require created, you no longer need the game-ready artwork that came with this template. Within ModBuddy's Solution Explorer (left-hand-side pane), expand the Textures folder, select all of the files (.DDS and .TEX), right-click and choose Delete. This should clear the Textures folder in ModBuddy, but also in your project folder structure.
+
+--------
+IMPORT PROCESS
+--------
+
+The steps below describe the process required to be done for each image. All of the steps (except for launching the Asset Editor) need to performed for each image. Once you are familiar with the process, it doesn't take as long as you would imagine.
+
+1. Go to Tools --> Launch Asset Editor. The first launch may take a small amount of time - of course, much will depend on the resources of your machine.
+
+2. Within Asset Editor, click File --> New. Select Texture and choose OK.
+
+3. Within the pane that appears, on the left-hand-side, find the 'Class Name' field and enter: UserInterface. You can also use the drop-down arrow to browse to it, but typing/copy-pasting into the field will work just fine.
+
+4. Click in the field directly below, named 'Source File Path'. Next, click the elipsis (...) icon on the right-hand-side of the field. THis will open a Windows Explorer dialogue window.
+
+5. Browse to the image you wish to import, select it and click Open.
+
+6. Click File --> Save.
+
+You need to repeat steps 2-6 for every image you have created.
+
+IMPORTANT: There is one image that is an exception to the above process. In this custom civilization mod template, it's the image called FALLBACK_NEUTRAL_PO_NGBE. For your equivalent image, perform the identical steps - however, in step 3, choose Leader_Fallback for the 'Class Name', instead of UserInterface.
+
+Once you have performed the steps for every image, you can close/minimise the Asset Editor.
+
+--------
+POPULATING TEXTURES INTO SOLUTION EXPLORER
+--------
+
+There's just one final step, for now - we need to re-populate the 2D artwork we've just imported so it appears in our Solution Explorer's Textures folder.
+
+To do this, right-click the Textures folder (which should be empty) and choose Add --> Existing Item. In the Windows Explorer dialogue that appears, browse to the Textures folder within your project (Windows Explorer should default to your project folder, so just look for a folder called 'Textures') and you should see every image you imported via Asset Editor in .DDS format, along with its corresponding .TEX file.
+
+Select all of the files and click Add. You should see them all appear on the Solution Explorer view.
+
+The import process via Asset Editor does three things:
+
+1. Converts the image to .DDS format.
+2. Places a copy of the .DDS format image in the project's Textures folder.
+3. Saves a corresponding .TEX file in the project's Textures folder.
+
+There is one final, housekeeping task that I recommend. Expand the Textures folder and select all of the files within it. Next, go to View --> Properties Window (shortcut: F4).
+
+In the Properties window (on the right-hand-side), click within the 'Build Action' field and, using the dropdown, set the 'Build Action' to XLP.
+
+--------
+AMENDING ARTWORK YOU HAVE PREVIOUSLY IMPORTED
+--------
+
+If, for any reason, you want to change an image, the safest way to do so is to amend your source artwork and then perform a fresh reimport, deleting the outdated version from your Textures folder beforehand.
+
+That being said, I do believe that if you keep the source artwork in the same location, going in and amending the artwork with the Asset Editor open should trigger an automatic reimport. I have not personally tested this for icons - but I do understand it to work.
+
+--------
+NewIcons.sql
+--------
+
+With all of your 2D artwork successfully imported, we are now ready to perform the necessary configuration to the NewIcons.sql file that we skipped past during our SQL sections.
+
+The NewIcons.sql file contains the code that links the imported 2D artwork to various gameplay items. Crucially, we need to match the imported .DDS filenames exactly in the sections of the file that reference these filenames. It is for this reason that we only complete this file now that we have imported our artwork. As per an earlier comment, a sensible file naming convention makes this step easier and more intuitive for us.
+
+The primary game files that have equivalent code are: \Base\Assets\UI\Icons\Icons_Civilizations.xml, \Base\Assets\UI\Icons\Icons_UnitActions.xml, \Base\Assets\UI\Icons\Icons_Units.xml and \Base\Assets\UI\Icons\Icons_UnitPortraits.xml.
+
+--------
+
+With all of our source artwork successfully imported and referenced within our NewIcons.sql game code, we are now ready to move on to the next part - where we will create some additional artwork-related files that will support the mod building process.
+
+Suggested next section: 4. HelpFile_XLPs.txt. For the next section, we'll be working within the Asset Editor again, so if you do not have it open, launch it now and then move to the next help file.

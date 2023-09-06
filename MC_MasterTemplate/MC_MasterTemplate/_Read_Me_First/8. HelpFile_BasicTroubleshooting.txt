@@ -1,0 +1,39 @@
+
+--------
+HELP FILE: BASIC TROUBLESHOOTING
+--------
+
+With your mod built, when attempting to launch a new game with your custom leader selected, the game may not load. Don't panic. Not only is this fairly common but, for most people, it is expected.
+
+Actually, even if the mod loads successfully, it is good practice to check that there are no errors being generated - as some errors in logic may not prevent the game from loading, but may simply limit certain functionality (e.g. a particular ability might not work).
+
+The SQL coding language (and XML, for that matter) is very specific about format. A single character out of place can result in the game failing to load. Thankfully, Civilization VI captures some information in log files that are hosted in the following folder that we can take a look at:
+
+\AppData\Local\Firaxis Games\Sid Meier's Civilization VI\Logs\
+
+The first thing to note is - best-practice is to disable all other mods (except for those your mod depends on) except this one before launching. If it fails, head on over to the folder above and open up the Database.log file as a first step.
+
+You are looking for the word 'ERROR' in the first instance. This should give you some idea of the nature of the error your code has in it. Common errors include:
+
+'SYNTAX ERROR NEAR'
+As per the description, this indicates there is badly-formed code somewhere in your mod. This will need to be corrected to allow that code to be executed. In most cases, the syntax error is a missing piece of punctuation - either a missing comma between lists of values, or a missing semi-colon to close off a code section. These can be tricky to spot, but practice and experience help.
+
+'UNIQUE CONSTRAINT FAILED'
+This appears when there is a code string attempting to be created that already exists. Most commonly, this occurs when the modder believes they need to DEFINE an item that already exists in the base-game, when in reality they only need to REFERENCE it.
+
+'FOREIGN KEY CONSTRAINT'
+This typically appears where a value has been entered, but that value is not allowed in that location. There are many parts of your code where the game expects a specific value, or type of value. For example, if the value should be a type of yield, the game knows it must expect an entry from the table of available yields. If we enter, for example, the name of a unit, the game will fail to process that entry and generate the 'foreign key constraint' error.
+
+You may have noticed that the Database.log does not actually tell you which file contains the error in question. If you cannot tell based on the nature of the error, you can also leverage the Modding.log file.
+
+Within Database.log, each entry has a numeric string that represents a timestamp (e.g. 123456.789). If you search for the string next to the 'ERROR' in Database.log in Modding.log, you should see a corresponding entry that gives the name of a (SQL) file in your mod that is generating that particular error. This can help narrow down your search for that error.
+
+--------
+
+This is intended to be a really quick-and-dirty, sixty-second troubleshooting guide.
+
+For those interested in modding and willing to overcome the inevitable errors, I highly recommend joining the very active Discord-based Civ VI Modding Helpline, via:
+
+https://discord.gg/jSVhyBYvZR
+
+Myself, as well as many other modders, are active on that platform and are always willing to help new modders learn the craft.

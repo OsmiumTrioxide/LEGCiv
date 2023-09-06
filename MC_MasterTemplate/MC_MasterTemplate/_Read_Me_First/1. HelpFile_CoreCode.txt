@@ -1,0 +1,138 @@
+
+--------
+HELP FILE: CORE CODE (.SQL FILES)
+--------
+
+--------
+INTRODUCTION
+--------
+
+This file intends to serve as a simple readme/help file, to try and provide some overview and context on what is contained within the various SQL files within the 'Core' folder, explaining their purpose and the general principle of how the content of these files are used to build functionality within your mod.
+
+The most important principle to understand is that the 'game code' controls all of the functionality that your mod will introduce. It is where you will create (or define) content, generate gameplay effects that influence how that content functions and specify the in-game text that appears when the game wants to present that content to you in the UI.
+
+In addition, the game code is also used to reference 2D artwork that is presented alongside text in many instances (i.e. icons). Setting up the 2D artwork files themselves is covered separately - however, the game code (SQL) files are responsible for dictating where in the game a particular image will be used.
+
+This document will briefly explain some primary concepts with respect to creating game code - the individual SQL files are all annotated to explain each code section in depth.
+
+--------
+VIEWING & EDITING
+--------
+
+A really brief - but important - note about how to actually use SQL files, in the context of this ModBuddy software. SQL files can be viewed and edited by opening them directly in ModBuddy. Browsing to a SQL file via the Solution Explorer (the folder structure on the left-hand-side) and double-clicking a SQL file will open its contents as a tab in this window. With the file open, you can edit it as required, with no restrictions. When you save the contents, it will save the new version in-place - much like if you were editing a Microsoft Word document on your computer.
+
+--------
+FORMAT & SYNTAX
+--------
+
+For this template, I have chosen to use the SQL format. More specifically, Civilization VI uses the SQLite code language. A basic understanding of the syntax - how the code is formed/structured - will greatly help. However, even for those with little experience, it becomes fairly intuitive after you have worked with it for a short while.
+
+The game code we will go on to create is all written into Database Tables. Indeed, all of the code used in the base-game and its expansions is written into Database Tables in an equivalent way. Firaxis, in their game code files, make use of the XML file format to store their code. Both SQL and XML can be used to achieve the same thing - they are different coding languages, so have different formats/structures, but have equal capabilities.
+
+My personal preference is SQL because there are some functions that SQL allows which mean the code can be written more efficiently (i.e. less of it). The reason I am mentioning these two formats is to provide an explanation as to why you will encounter the XML format when referencing the Firaxis game files. Translation between XML and SQL becomes straightforward once there is a familiarity with both - in most cases, comparing the same piece of code in each code language can make that connection well-understood.
+
+The below example code is a simple, representative example of the same content being added to the game database in each code language. This code, in both cases, creates a core entry in the 'Types' database table, specifying the 'CIVILIZATION_AMERICA' string and defining it as being of the 'KIND_CIVILIZATION'.
+
+XML code example:
+
+<Types>
+	<Row Type="CIVILIZATION_AMERICA" Kind="KIND_CIVILIZATION"/>
+</Types>
+
+SQL code example:
+
+INSERT INTO Types
+(Type, Kind)
+VALUES ('CIVILIZATION_AMERICA', 'KIND_CIVILIZATION');
+
+Both code excerpts achieve the exact same thing - you will note they are formatted quite differently. As a simple activity, take a look at the two and try to reconcile the different parts that introduce the identical strings. As mentioned, being able to do this translation will help with referencing the base-game files and then, subsequently, inserting equivalent code (perhaps with different variables) into your mod.
+
+--------
+ADDITIONS, DELETIONS AND MODIFICATIONS
+--------
+
+In general terms, when we add game code to our mod, we'll be doing one of three things:
+
+- adding to the database tables
+- deleting from the database tables
+- changing an existing entry in the database tables
+
+Within this template, there are occasions when we will do each of these three things - most prominent are the additions, as for the most part we are creating new content. However, a second important principle is to understand that we do not need to create every piece of logic from scratch. All of the game's existing content can be leveraged/re-used to make our task easier, where appropriate.
+
+As a simple, representative example, let us imagine that we wanted to create a new civilization, but that we wanted it to be led by an existing, in-game leader. In this example, we would need to both DEFINE and REFERENCE the new civilization - as this is brand-new content that we are adding to the game. However, we only need to REFERENCE the leader, as the leader already exists in the game files.
+
+Throughout this template, you will come across numerous places where we leverage existing game code and these instances are annotated accordingly. Where the content is new, we will need to define the entries that underpin that content -these usually occur near the top of each file and are also annotated accordingly.
+
+--------
+SUMMARY OF 'CORE' CODE FILES
+--------
+
+The above is probably enough introductory theory/wider context for the purposes of this template. Let me provide a brief overview of the specific files that appear under the 'Core' folder, what they contain and how they contribute to our custom civilization mod. Please note: the order in which the files are listed below is a suggested order in which they should be worked through and understood.
+
+--------
+
+1. Civilization_Config.sql
+
+This file contains the primary configuration of our new, custom civilization. It is where we make the civilization exist as its own entity, enabling it to be assigned a leader to be in charge of it. Civilizations are quite straightforward in terms of what they consist of - they are a few core variables (like a Name, an Adjective, etc), some geographic place names, some named citizens, a list of cities, some basic 'flavour' information for the Civilopedia and, finally, a few biases towards certain start locations.
+
+The primary game files that have equivalent code are: \Base\Assets\Gameplay\Data\Civilizations.xml and \DLC\Expansion2\Data\Expansion2_NamedPlaces.xml.
+
+--------
+
+2. Civilization_Colors.sql
+
+This file defines four pairs of colour values that will be used to represent our civilization in-game - these will influence the colour of the civilization icon, as well as the border colours of our territory.
+
+The primary game file that has equivalent code is: \Base\Assets\UI\Colors\Colors.xml.
+
+--------
+
+3. Civilization_UA.sql
+
+This file adds our custom civilization's unique ability and includes all of the necessary code to define it and then configure the effect it has on the game. This is the first file in which we make use of a Modifier - which is the game's mechanism for deviating away from the default effects that different elements have. In this custom civilization, the unique ability is fairly simple - we'll grant additional food yields from certain religious buildings.
+
+The primary game file that has equivalent code is: \Base\Assets\Gameplay\Data\Civilizations.xml.
+
+--------
+
+4. Civilization_UU.sql
+
+This file adds our custom civilization's unique unit to the game, including all of the code necessary to configure the unit's unique ability, as well as code that causes it to replace an existing unit (in our custom civilization's unit tree).
+
+As well as building on the knowledge gained from the Modifier in Civilization_UA.sql, this file introduces us to the concept of Unit Abilities and we come across Requirements for the first time. In addition, it provides an example of how powerful the SQL language can be - to help us easily inherit numerous characteristics from the base-game unit that our unique unit will replace (without the need to repeat the code that applies to that base-game unit).
+
+The primary game files that have equivalent code are: \Base\Assets\Gameplay\Data\Units.xml and \Base\Assets\Gameplay\Data\UnitAbilities.xml.
+
+--------
+
+5. Civilization_UI.sql
+
+In this file, we configure our custom civilization's unique infrastructure - which, in our case, is a unique improvement. The example in this file is the most complex of the unique items - as such, I suggest it to be worked through after the Civilization_UA.sql and Civilization_UU.sql files.
+
+In our example, we make use of an existing improvement from the base-game (the Colossal Head), but recreate it with new characteristics and game effects. Whilst we create those new characteristics afresh, we leverage the artwork (including the 3D model) from the base-game by reusing the same unique string as the base-game improvement. Because we are reusing a base-game improvement, we are also introduced to the DELETE command.
+
+This example stitches together a multi-layered requirement to grant our civilization extra Great Person yields, but only if certain numbers of our custom improvement have been built in a single city.
+
+The primary game file that has equivalent code is: \Base\Assets\Gameplay\Data\Improvements.xml.
+
+--------
+
+6. Civilization_HistoricMoments.sql
+
+Our final 'gameplay code' file (in this section) is nice and straightforward. This file configures the game to recognise the first use of the unique improvement and unique unit as events that trigger Era Score to be granted. This is also the first time we directly reference an artwork file - though we are simply citing it by filename at this stage.
+
+The primary game file that has equivalent code is: \DLC\Expansion1\Data\Expansion1_Moments.xml.
+
+--------
+
+7. Civilization_Localisation.sql
+
+With all of the gameplay code completed, we now turn our attention to the corresponding in-game display text. This file is fairly straightforward, although it may look a little different from the others.
+
+It contains a list of every item we've generated that has a corresponding in-game text requirement. This file is where we ensure the text displayed in-game has the flavour and style we want. Most entries are self-explanatory - however, if we become unsure of 'what' something refers to, a useful technique is to copy the unique string (which starts LOC_) and search for it across our Entire Solution (via Ctrl + F). This should locate the gameplay code that is linked to it.
+
+--------
+
+At this stage, we have completed all of the SQL files that make up the gameplay code and in-game text within the 'Core' section. So far, we haven't looked at NewIcons.sql. We'll cover the usage of this in the section that deals with Textures (3. HelpFile_Textures.txt), as the content of the NewIcons.sql file directly links some of the 2D artwork we'll create to in-game items.
+
+Suggested next section: 2. HelpFile_LeaderCode.txt. This uses most of the same principles, though the code focuses on the Leader, rather than the Civilization.
